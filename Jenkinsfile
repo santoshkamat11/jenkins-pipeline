@@ -37,14 +37,14 @@ node{
 
 
 def imageBuild(containerName, tag){
-    sh "docker build -t $containerName:$tag  -t $containerName --pull --no-cache ."
+    bat "docker build -t $containerName:$tag  -t $containerName --pull --no-cache ."
     echo "Image build complete"
 }
 
 def pushToImage(containerName, tag, dockerUser, dockerPassword){
-    sh "docker login -u $dockerUser -p $dockerPassword"
-    sh "docker tag $containerName:$tag $dockerUser/$containerName:$tag"
-    sh "docker push $dockerUser/$containerName:$tag"
+    bat "docker login -u $dockerUser -p $dockerPassword"
+    bat "docker tag $containerName:$tag $dockerUser/$containerName:$tag"
+    bat "docker push $dockerUser/$containerName:$tag"
     echo "Image push complete"
 }
 
