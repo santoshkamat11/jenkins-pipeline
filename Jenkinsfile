@@ -9,6 +9,13 @@ def HTTP_PORT="8090"
 
 
 node{
+	
+     stage('Initialize')
+    {
+        def dockerHome = tool 'MyDocker'
+        def mavenHome  = tool 'MyMaven'
+        env.PATH = "${dockerHome}/bin:${mavenHome}/bin:${env.PATH}"
+    }
 
 
 	stage('SCM Checkout'){
@@ -38,16 +45,16 @@ node{
 
 
 def imageBuild(containerName, tag){
-    def dockerHome = tool name: 'docker-1', type: 'org.jenkinsci.plugins.docker.commons.tools.DockerTool'
-    bat "${dockerHome}/bin/docker build -t $containerName:$tag  -t $containerName --pull --no-cache ."
+    
+    bat "docker build -t $containerName:$tag  -t $containerName --pull --no-cache ."
     echo "Image build complete"
 }
 
 def pushToImage(containerName, tag, dockerUser, dockerPassword){
-    def dockerHome = tool name: 'docker-1', type: 'org.jenkinsci.plugins.docker.commons.tools.DockerTool'
-    bat "${dockerHome}/bin/docker login -u $dockerUser -p $dockerPassword"
-    bat "${dockerHome}/bin/docker tag $containerName:$tag $dockerUser/$containerName:$tag"
-    bat "${dockerHome}/bin/docker push $dockerUser/$containerName:$tag"
+    
+    bat "docker login -u $dockerUser -p $dockerPassword"
+    bat "docker tag $containerName:$tag $dockerUser/$containerName:$tag"
+    bat "docker push $dockerUser/$containerName:$tag"
     echo "Image push complete"
 }
 
