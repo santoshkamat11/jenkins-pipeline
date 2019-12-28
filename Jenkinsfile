@@ -3,7 +3,7 @@ def CONTAINER_TAG="latest"
 def DOCKER_HUB_USER="santoshkamat11"
 def PASSWORD = "police12@"
 def HTTP_PORT="8090"
-def dockerHome = "tool name: 'docker-1', type: 'org.jenkinsci.plugins.docker.commons.tools.DockerTool'"
+def dockerHome = tool name: 'docker-1', type: 'org.jenkinsci.plugins.docker.commons.tools.DockerTool'
 
 
 
