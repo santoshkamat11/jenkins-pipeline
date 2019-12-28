@@ -46,7 +46,7 @@ node{
 
 def imageBuild(containerName, tag){
     
-    bat "cd C:\Program Files\Docker Toolbox" 
+    bat "cd C:/Program Files/Docker Toolbox" 
     bat "docker build -t $containerName:$tag  -t $containerName --pull --no-cache ."
     echo "Image build complete"
 }
