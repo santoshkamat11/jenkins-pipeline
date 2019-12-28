@@ -12,7 +12,7 @@ node{
 
 	stage('SCM Checkout'){
   
-    git 'https://github.com/santoshkamat11/TicketManagementGithub'
+    git 'https://github.com/santoshkamat11/jenkins-pipeline'
   
   }
   
