@@ -39,15 +39,15 @@ node{
 
 def imageBuild(containerName, tag){
     def dockerHome = tool name: 'docker-1', type: 'org.jenkinsci.plugins.docker.commons.tools.DockerTool'
-    bat "${dockerHome}/docker build -t $containerName:$tag  -t $containerName --pull --no-cache ."
+    bat "${dockerHome}/bin/docker build -t $containerName:$tag  -t $containerName --pull --no-cache ."
     echo "Image build complete"
 }
 
 def pushToImage(containerName, tag, dockerUser, dockerPassword){
     def dockerHome = tool name: 'docker-1', type: 'org.jenkinsci.plugins.docker.commons.tools.DockerTool'
-    bat "${dockerHome}/docker login -u $dockerUser -p $dockerPassword"
-    bat "${dockerHome}/docker tag $containerName:$tag $dockerUser/$containerName:$tag"
-    bat "${dockerHome}/docker push $dockerUser/$containerName:$tag"
+    bat "${dockerHome}/bin/docker login -u $dockerUser -p $dockerPassword"
+    bat "${dockerHome}/bin/docker tag $containerName:$tag $dockerUser/$containerName:$tag"
+    bat "${dockerHome}/bin/docker push $dockerUser/$containerName:$tag"
     echo "Image push complete"
 }
 
